@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PCSU.MainApplication", "PCSU.MainApplication\PCSU.MainApplication.csproj", "{5CAF015E-3498-43A2-B5C4-1A449862828E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PCSU.MainApplication", "source\PCSU.MainApplication\PCSU.MainApplication.csproj", "{5CAF015E-3498-43A2-B5C4-1A449862828E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2ECDEF9E-F9A4-4823-BFB7-8756C11B0999} = {2ECDEF9E-F9A4-4823-BFB7-8756C11B0999}
 		{3EB98C2D-B7B7-4BA5-AE8B-6B20FA869EF3} = {3EB98C2D-B7B7-4BA5-AE8B-6B20FA869EF3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCSU.Repositories", "PCSU.Repository\PCSU.Repositories.csproj", "{98D6BA83-4714-48C7-83BD-93DECBEAE95B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCSU.Repositories", "source\PCSU.Repository\PCSU.Repositories.csproj", "{98D6BA83-4714-48C7-83BD-93DECBEAE95B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCSU.Models", "PCSU.Models\PCSU.Models.csproj", "{2ECDEF9E-F9A4-4823-BFB7-8756C11B0999}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCSU.Models", "source\PCSU.Models\PCSU.Models.csproj", "{2ECDEF9E-F9A4-4823-BFB7-8756C11B0999}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCSU.Controllers", "PCSU.Controllers\PCSU.Controllers.csproj", "{3EB98C2D-B7B7-4BA5-AE8B-6B20FA869EF3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCSU.Controllers", "source\PCSU.Controllers\PCSU.Controllers.csproj", "{3EB98C2D-B7B7-4BA5-AE8B-6B20FA869EF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
