@@ -4,7 +4,6 @@ Photos Compress, Sort and Upload (PCSU) is Windows app for handling sorting and 
 
 ## Goals and progress
 
-------
 
 - [x] Load files into the app
 - [x] Render image in app
