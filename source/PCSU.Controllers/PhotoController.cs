@@ -39,8 +39,8 @@ namespace PCSU.Controllers
 				DateTaken = photoInfo.CreationTime,
 				Name = photoInfo.Name,
 				Path = photoInfo.FullName,
-				DateModified = photoInfo.LastWriteTime
-			});
+				DateModified = photoInfo.LastWriteTime,
+				Extension = photoInfo.Extension
 		}
 
 		public List<Photo> GetAllPhotos()

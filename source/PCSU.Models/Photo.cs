@@ -7,6 +7,7 @@
 		public string Path { get; set; } = string.Empty;
 		public DateTime DateTaken { get; set; }
 		public DateTime DateModified { get; set; }
+		public string Extension { get; set; } = string.Empty;
 
 		public override string ToString() => Path;
 		public List<(string name, object value)> GetPropertiesList()
@@ -17,7 +18,8 @@
 				("Name",Name),
 				("Path",Path),
 				("DateTaken",DateTaken),
-				("DateModified",DateModified)
+				("DateModified",DateModified),
+				("Extension",Extension)
 			};
 		}
 	}
