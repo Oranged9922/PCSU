@@ -1,3 +1,4 @@
+﻿
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,7 +14,7 @@ namespace PCSU.MainApplication
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		PhotoController photoController = new PhotoController();
+		private readonly PhotoController _photoController = new();
 
 		public MainWindow()
 		{
@@ -23,18 +24,20 @@ namespace PCSU.MainApplication
 		private void ButtonPhotosLoad_Click(object sender, RoutedEventArgs e)
 		{
 			// open file dialog
-			var dialog = new Microsoft.Win32.OpenFileDialog();
-			dialog.Multiselect = true;
-			dialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
+			var dialog = new Microsoft.Win32.OpenFileDialog
+			{
+				Multiselect = true,
+				Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png"
+			};
 			if (dialog.ShowDialog() == true)
 			{
 				// load photos
-				photoController.LoadPhotos(dialog.FileNames, out List<string> errMsg, out bool isErr);
+				_photoController.LoadPhotos(dialog.FileNames, out List<string> errMsg, out bool isErr);
 				// show window based on isErr
 				if (isErr)
 				{
 					string messageBoxText = "Some photos were unable to load:\n\n";
-					foreach (var msg in errMsg)
+					foreach (string? msg in errMsg)
 					{
 						messageBoxText += msg + "\n";
 					}

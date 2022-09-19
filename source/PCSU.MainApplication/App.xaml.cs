@@ -1,7 +1,8 @@
-﻿using System.Windows;
-
+﻿
 namespace PCSU.MainApplication
 {
+	using System.Windows;
+
 	/// <summary>
 	/// Interaction logic for App.xaml
 	/// </summary>
