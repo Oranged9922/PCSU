@@ -1,56 +1,56 @@
-﻿using PCSU.Models;
-using PCSU.Repositories;
-
+﻿
 namespace PCSU.Controllers
 {
-    public class PhotoController
-    {
-        PhotoRepository photoRepository = new();
-        public Photo GetPhoto(int photoId)
-        {
-            return photoRepository.GetPhoto(photoId);
-        }
+	using PCSU.Models;
+	using PCSU.Repositories;
+	public class PhotoController
+	{
+		private readonly PhotoRepository _photoRepository = new();
+		public Photo GetPhoto(int photoId)
+		{
+			return this._photoRepository.GetPhoto(photoId);
+		}
 
-        public void LoadPhotos(string[] filePaths, out List<string> errMsg, out bool isErr)
-        {
-            isErr = false;
-            errMsg = new();
-            foreach (var filePath in filePaths)
-            {
-                try
-                {
-                    LoadPhoto(filePath);
-                }
-                catch (Exception e)
-                {
-                    isErr = true;
-                    errMsg.Add(filePath + "\nreason: " + e.Message);
-                }
-            }
-        }
+		public void LoadPhotos(string[] filePaths, out List<string> errMsg, out bool isErr)
+		{
+			isErr = false;
+			errMsg = new();
+			foreach (string? filePath in filePaths)
+			{
+				try
+				{
+					LoadPhoto(filePath);
+				}
+				catch (Exception e)
+				{
+					isErr = true;
+					errMsg.Add(filePath + "\nreason: " + e.Message);
+				}
+			}
+		}
 
-        public void LoadPhoto(string filePath)
-        {
-            FileInfo photoInfo = new(filePath);
+		public void LoadPhoto(string filePath)
+		{
+			FileInfo photoInfo = new(filePath);
 
-             photoRepository.AddPhoto(new()
-                {
-                Id = photoRepository.GetCurrentId(),
-                DateTaken = photoInfo.CreationTime,
-                Name = photoInfo.Name,
-                Path = photoInfo.FullName,
-                DateModified = photoInfo.LastWriteTime
-            });
-        }
+			this._photoRepository.AddPhoto(new()
+			{
+				Id = this._photoRepository.GetCurrentId(),
+				DateTaken = photoInfo.CreationTime,
+				Name = photoInfo.Name,
+				Path = photoInfo.FullName,
+				DateModified = photoInfo.LastWriteTime
+			});
+		}
 
-        public List<Photo> GetAllPhotos()
-        {
-            List<Photo> r = new();
-            for (int i = 0; i < photoRepository.GetCurrentId(); i++)
-            {
-                r.Add(photoRepository.GetPhoto(i));
-            }
-            return r;
-        }
-    }
+		public List<Photo> GetAllPhotos()
+		{
+			List<Photo> r = new();
+			for (int i = 0; i < this._photoRepository.GetCurrentId(); i++)
+			{
+				r.Add(this._photoRepository.GetPhoto(i));
+			}
+			return r;
+		}
+	}
 }
