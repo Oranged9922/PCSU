@@ -1,21 +1,20 @@
 ﻿
-﻿using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
-
-using PCSU.Controllers;
-using PCSU.Models;
-
 namespace PCSU.MainApplication
 {
+	using System.Collections.Generic;
+	using System.Windows;
+	using System.Windows.Controls;
+	using System.Windows.Media.Imaging;
+
+	using PCSU.Controllers;
+	using PCSU.Models;
+
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
 	public partial class MainWindow : Window
 	{
 		private readonly PhotoController _photoController = new();
-
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -50,15 +49,40 @@ namespace PCSU.MainApplication
 
 				}
 			}
+			UpdateListBoxFile();
+		}
+
+		private void UpdateListBoxFile()
+		{
+			// clear listbox
 			ListBoxFile.Items.Clear();
-			List<Photo> photos = photoController.GetAllPhotos();
-			photos.ForEach(x => ListBoxFile.Items.Add(x));
+			_photoController.GetAllPhotos().ForEach(x => ListBoxFile.Items.Add(x.Path));
+
 		}
 
 		private void ListBoxFile_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			var image = photoController.GetPhoto(ListBoxFile.SelectedIndex);
+			Photo? image = _photoController.GetPhoto(ListBoxFile.SelectedIndex);
+
 			this.PhotoImageBox.Source = new BitmapImage(new(image.Path));
+			this.StackPanelFileInformation.Children.Clear();
+			foreach ((string name, object value) in image.GetPropertiesList())
+			{
+				this.StackPanelFileInformation.Children.Add(
+				 new TextBlock
+				 {
+					 Text = name + ": " + value,
+					 Margin = new Thickness(5, 0, 0, 0)
+				 });
+			}
+		}
+
+		private void ButtonPhotosRemove_Click(object sender, RoutedEventArgs e)
+		{
+			// open OnDeleteWindow
+			OnDeleteWindow onDeleteWindow = new(_photoController);
+			onDeleteWindow.ShowDialog();
 		}
 	}
 }
+
