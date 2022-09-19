@@ -26,7 +26,7 @@ namespace PCSU.MainApplication
 			var dialog = new Microsoft.Win32.OpenFileDialog
 			{
 				Multiselect = true,
-				Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png"
+				Filter = "Image files (*.jpg, *.jpeg, *.png, *.cr2) | *.jpg; *.jpeg; *.png; *.cr2"
 			};
 			if (dialog.ShowDialog() == true)
 			{
@@ -62,6 +62,12 @@ namespace PCSU.MainApplication
 
 		private void ListBoxFile_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
+			if (ListBoxFile.Items.Count == 0)
+			{
+				this.PhotoImageBox.Source = null;
+				this.StackPanelFileInformation.Children.Clear();
+				return;
+			}
 			Photo? image = _photoController.GetPhoto(ListBoxFile.SelectedIndex);
 
 			this.PhotoImageBox.Source = new BitmapImage(new(image.Path));
@@ -82,6 +88,7 @@ namespace PCSU.MainApplication
 			// open OnDeleteWindow
 			OnDeleteWindow onDeleteWindow = new(_photoController);
 			onDeleteWindow.ShowDialog();
+			this.UpdateListBoxFile();
 		}
 	}
 }
