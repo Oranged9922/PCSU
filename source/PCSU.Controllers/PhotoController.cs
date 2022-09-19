@@ -41,6 +41,13 @@ namespace PCSU.Controllers
 				Path = photoInfo.FullName,
 				DateModified = photoInfo.LastWriteTime,
 				Extension = photoInfo.Extension
+			})
+			;
+		}
+
+		public void RemovePhoto(Photo photo)
+		{
+			this._photoRepository.RemovePhoto(photo.Id);
 		}
 
 		public List<Photo> GetAllPhotos()

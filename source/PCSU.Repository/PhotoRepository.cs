@@ -22,7 +22,11 @@ namespace PCSU.Repositories
 
 		public void RemovePhoto(int photoId)
 		{
-			throw new NotImplementedException();
+			_photos.Remove(photoId);
+			var editedkvp = _photos.Where(x => x.Value.Id > photoId).ToList();
+			editedkvp.ForEach(x => x.Value.Id--);
+			_photos.Remove(--_id);
+			editedkvp.ForEach(x => _photos[x.Key - 1] = x.Value);
 		}
 
 		public int GetCurrentId()
