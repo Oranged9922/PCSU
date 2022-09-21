@@ -9,7 +9,7 @@
         Height="450" 
         Width="800"
         MinHeight="400"
-        MinWidth="600">
+        MinWidth="630">
 
 
 	<Grid Background="#606060">
@@ -32,38 +32,31 @@
 			</Grid.ColumnDefinitions>
 			<!-- Loading photos -->
 			<Grid Grid.Column="0" HorizontalAlignment="Left">
-				<Grid Margin="15,10,15,10">
-					<Grid.RowDefinitions>
-						<RowDefinition Height="30"/>
-						<RowDefinition Height="30"/>
-						<RowDefinition Height="*"/>
-					</Grid.RowDefinitions>
+				<StackPanel Margin="10">
 					<Button 
-                        Grid.Row="0" 
                         x:Name="ButtonPhotosLoad" 
                         Height="30" 
                         Width="200"
-                        HorizontalAlignment="Left" Click="ButtonPhotosLoad_Click">
+                        HorizontalAlignment="Center" 
+						Margin="0,0,0,20"
+						Click="ButtonPhotosLoad_Click">
 						Load Photos to working list
 					</Button>
 					<Button 
-                        Grid.Row="1" 
                         x:Name="ButtonPhotosRemove" 
                         Height="30" 
                         Width="200" 
-                        HorizontalAlignment="Left" Click="ButtonPhotosRemove_Click">
+						Margin="0,0,0,20"
+                        HorizontalAlignment="Center" Click="ButtonPhotosRemove_Click">
 						Remove photos from working list
 					</Button>
-
 					<ListBox
                         Name ="ListBoxFile"
-                        Grid.Row="2" 
                         MinHeight="120"
-                        MaxWidth="400"
-                        VerticalAlignment="Top" 
+                        MaxWidth="200"
                         SelectionChanged="ListBoxFile_SelectionChanged" 
                         />
-				</Grid>
+				</StackPanel>
 			</Grid>
 			<!-- Render photo -->
 			<Grid Grid.Column="1">
@@ -84,6 +77,62 @@
 					VerticalAlignment="Top"
 					/>
 				</Border>
+			</Grid>
+		</Grid>
+		<!-- bottom grid -->
+		<Grid Grid.Row="2"
+		Margin="15,10,15,10">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Grid Grid.Column="0"
+			HorizontalAlignment="Left">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<Grid Grid.Column="0">
+						<StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+							<CheckBox Content="Sort by..." Margin="0,5,10,5"/>
+							<CheckBox Content="Compress with..." />
+							<Button 
+						Height="20" 
+						Width="100" 
+						HorizontalAlignment="Left"
+						Margin="0,13,0,0">
+						Choose path
+							</Button>
+						</StackPanel>
+					</Grid>
+					<Grid Grid.Column="1" HorizontalAlignment="Left">
+						<StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+							<ComboBox Name="ComboBoxCompressOptions" Width="150"  Margin="0,0,0,0" />
+							<ComboBox Name="ComboBoxSortOptions" Width="150" Margin="0,0,0,0" />
+							<TextBox x:Name="DestinationPath" TextWrapping="NoWrap" Text="No Path selected..." MaxWidth="400" Margin="0,10,0,0" IsEnabled="False"/>
+							
+						</StackPanel>
+					</Grid>
+				</Grid>
+			</Grid>
+			<Grid Grid.Column="1">
+					<StackPanel>
+					<Button 
+				Height="30" 
+				Width="200" 
+				HorizontalAlignment="Right"
+				Margin="0,10,0,20">
+						Run
+						</Button>
+							
+						<Button
+				Height="30" 
+				Width="200" 
+				HorizontalAlignment="Right" Click="Button_Click">
+						Exit
+						</Button>
+					</StackPanel>
 			</Grid>
 		</Grid>
 	</Grid>
