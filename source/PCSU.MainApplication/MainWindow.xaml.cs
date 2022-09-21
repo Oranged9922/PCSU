@@ -5,7 +5,7 @@ namespace PCSU.MainApplication
 	using System.Windows;
 	using System.Windows.Controls;
 	using System.Windows.Media.Imaging;
-
+	using System.Drawing.Imaging;
 	using PCSU.Controllers;
 	using PCSU.Models;
 
@@ -17,13 +17,21 @@ namespace PCSU.MainApplication
 		private readonly PhotoController _photoController = new();
 		public MainWindow()
 		{
-			InitializeComponent();	
+			InitializeComponent();
 			///TODO 
 			///FIX SOMETIMES LATER IN FUTURE
 #pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
 			Closing += MainWindow_Closing;
 #pragma warning restore CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
-		}
+
+			ComboBoxCompressOptions.Items.Add("100% (Minimum compression)");
+			ComboBoxCompressOptions.Items.Add("75%");
+			ComboBoxCompressOptions.Items.Add("50");
+			ComboBoxCompressOptions.Items.Add("25");
+			ComboBoxCompressOptions.Items.Add("1% (Maximum compression)");
+
+			ComboBoxSortOptions.Items.Add("By creation date");		
+			}
 
 		private void ButtonPhotosLoad_Click(object sender, RoutedEventArgs e)
 		{
@@ -101,7 +109,7 @@ namespace PCSU.MainApplication
 			// messagebox are you sure you want to exit yes/cancel
 			string messageBoxText = "Are you sure you want to exit?";
 			string caption = "PCSU";
-			MessageBoxButton button = MessageBoxButton.OKCancel;
+			MessageBoxButton button = MessageBoxButton.YesNo;
 			MessageBoxImage icon = MessageBoxImage.Warning;
 			MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
 			if (result == MessageBoxResult.Cancel)
@@ -117,10 +125,59 @@ namespace PCSU.MainApplication
 
 		private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			e.Cancel = (MessageBox.Show("Do you want to exit?", "", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes) ?
-				 true : false;
+			e.Cancel = (MessageBox.Show("Are you sure you want to exit?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes) ?
+				 false : true;
 		}
 
+		private void CheckBoxSortBy_Unchecked(object sender, RoutedEventArgs e)
+		{
+			ComboBoxSortOptions.IsEnabled = false;
+		}
+
+		private void CheckBoxSortBy_Checked(object sender, RoutedEventArgs e)
+		{
+			ComboBoxSortOptions.IsEnabled = true;
+
+		}
+
+		private void CheckBoxCompressWith_Checked(object sender, RoutedEventArgs e)
+		{
+			ComboBoxCompressOptions.IsEnabled = false;
+
+		}
+		private void CheckBoxCompressWith_Unchecked(object sender, RoutedEventArgs e)
+		{
+			ComboBoxCompressOptions.IsEnabled = false;
+		}
+
+		private void ButtonChoosePath_Click(object sender, RoutedEventArgs e)
+		{
+			var dialog = new Microsoft.Win32.SaveFileDialog
+			{
+				Title = "Select a Directory",
+				Filter = "Directory|*.this.directory",
+				FileName = "select"
+			};
+
+			if (dialog.ShowDialog() == true)
+			{
+				string path = dialog.FileName;
+
+				path = path.Replace("\\select.this.directory", "");
+				path = path.Replace(".this.directory", "");
+
+				if (!System.IO.Directory.Exists(path))
+				{
+					System.IO.Directory.CreateDirectory(path);
+				}
+				// Our final value is in path
+				DestinationPath.Text = path;
+			}
+		}
+
+		private void ButtonRun_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
 	}
 }
-

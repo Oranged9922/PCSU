@@ -95,21 +95,22 @@
 					</Grid.ColumnDefinitions>
 					<Grid Grid.Column="0">
 						<StackPanel Orientation="Vertical" HorizontalAlignment="Left">
-							<CheckBox Content="Sort by..." Margin="0,5,10,5"/>
-							<CheckBox Content="Compress with..." />
+							<CheckBox Name="CheckBoxSortBy" Content="Sort by..." Margin="0,5,10,5" Unchecked="CheckBoxSortBy_Unchecked" Checked="CheckBoxSortBy_Checked"/>
+							<CheckBox Name="CheckBoxCompressWith" Content="Compress with..." Checked="CheckBoxCompressWith_Checked" Unchecked="CheckBoxCompressWith_Unchecked" />
 							<Button 
+							Name="ButtonChoosePath"
 						Height="20" 
 						Width="100" 
 						HorizontalAlignment="Left"
-						Margin="0,13,0,0">
+						Margin="0,13,0,0" Click="ButtonChoosePath_Click">
 						Choose path
 							</Button>
 						</StackPanel>
 					</Grid>
 					<Grid Grid.Column="1" HorizontalAlignment="Left">
 						<StackPanel Orientation="Vertical" HorizontalAlignment="Left">
-							<ComboBox Name="ComboBoxCompressOptions" Width="150"  Margin="0,0,0,0" />
-							<ComboBox Name="ComboBoxSortOptions" Width="150" Margin="0,0,0,0" />
+							<ComboBox Name="ComboBoxSortOptions" Width="150" Margin="0,0,0,0" IsEnabled="False" />
+							<ComboBox Name="ComboBoxCompressOptions" Width="150"  Margin="0,0,0,0" IsEnabled="False" />
 							<TextBox x:Name="DestinationPath" TextWrapping="NoWrap" Text="No Path selected..." MaxWidth="400" Margin="0,10,0,0" IsEnabled="False"/>
 							
 						</StackPanel>
@@ -119,10 +120,11 @@
 			<Grid Grid.Column="1">
 					<StackPanel>
 					<Button 
+				Name="ButtonRun"
 				Height="30" 
 				Width="200" 
 				HorizontalAlignment="Right"
-				Margin="0,10,0,20">
+				Margin="0,10,0,20" Click="ButtonRun_Click">
 						Run
 						</Button>
 							
