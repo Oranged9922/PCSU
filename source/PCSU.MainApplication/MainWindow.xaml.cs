@@ -26,7 +26,7 @@ namespace PCSU.MainApplication
 			var dialog = new Microsoft.Win32.OpenFileDialog
 			{
 				Multiselect = true,
-				Filter = "Image files (*.jpg, *.jpeg, *.png, *.cr2) | *.jpg; *.jpeg; *.png; *.cr2"
+				Filter = "Raw photos (*.cr2) | *.cr2"
 			};
 			if (dialog.ShowDialog() == true)
 			{
