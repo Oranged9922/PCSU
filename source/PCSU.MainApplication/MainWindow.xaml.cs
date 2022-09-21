@@ -17,7 +17,12 @@ namespace PCSU.MainApplication
 		private readonly PhotoController _photoController = new();
 		public MainWindow()
 		{
-			InitializeComponent();
+			InitializeComponent();	
+			///TODO 
+			///FIX SOMETIMES LATER IN FUTURE
+#pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
+			Closing += MainWindow_Closing;
+#pragma warning restore CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
 		}
 
 		private void ButtonPhotosLoad_Click(object sender, RoutedEventArgs e)
@@ -90,6 +95,32 @@ namespace PCSU.MainApplication
 			onDeleteWindow.ShowDialog();
 			this.UpdateListBoxFile();
 		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			// messagebox are you sure you want to exit yes/cancel
+			string messageBoxText = "Are you sure you want to exit?";
+			string caption = "PCSU";
+			MessageBoxButton button = MessageBoxButton.OKCancel;
+			MessageBoxImage icon = MessageBoxImage.Warning;
+			MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
+			if (result == MessageBoxResult.Cancel)
+			{
+				return;
+			}
+			else
+			{
+				// exit
+				Application.Current.Shutdown();
+			}
+		}
+
+		private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			e.Cancel = (MessageBox.Show("Do you want to exit?", "", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes) ?
+				 true : false;
+		}
+
 	}
 }
 
