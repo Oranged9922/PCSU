@@ -32,8 +32,14 @@
 			</Grid.ColumnDefinitions>
 			<!-- Loading photos -->
 			<Grid Grid.Column="0" HorizontalAlignment="Left">
-				<StackPanel Margin="10">
+				<Grid Margin="10">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
 					<Button 
+						Grid.Row="0"
                         x:Name="ButtonPhotosLoad" 
                         Height="30" 
                         Width="200"
@@ -43,6 +49,7 @@
 						Load Photos to working list
 					</Button>
 					<Button 
+						Grid.Row="1"
                         x:Name="ButtonPhotosRemove" 
                         Height="30" 
                         Width="200" 
@@ -51,12 +58,17 @@
 						Remove photos from working list
 					</Button>
 					<ListBox
+						Grid.Row="2"
                         Name ="ListBoxFile"
                         MinHeight="120"
                         MaxWidth="200"
-                        SelectionChanged="ListBoxFile_SelectionChanged" 
+						MaxHeight="400"
+                        SelectionChanged="ListBoxFile_SelectionChanged"
+						ScrollViewer.CanContentScroll="True"
+						ScrollViewer.HorizontalScrollBarVisibility="Auto"
+						ScrollViewer.VerticalScrollBarVisibility="Auto"
                         />
-				</StackPanel>
+				</Grid>
 			</Grid>
 			<!-- Render photo -->
 			<Grid Grid.Column="1">
