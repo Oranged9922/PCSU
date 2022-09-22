@@ -106,21 +106,7 @@ namespace PCSU.MainApplication
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-			// messagebox are you sure you want to exit yes/cancel
-			string messageBoxText = "Are you sure you want to exit?";
-			string caption = "PCSU";
-			MessageBoxButton button = MessageBoxButton.YesNo;
-			MessageBoxImage icon = MessageBoxImage.Warning;
-			MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon);
-			if (result == MessageBoxResult.Cancel)
-			{
-				return;
-			}
-			else
-			{
-				// exit
 				Application.Current.Shutdown();
-			}
 		}
 
 		private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
