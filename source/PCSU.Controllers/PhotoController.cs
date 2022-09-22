@@ -32,8 +32,7 @@ namespace PCSU.Controllers
 		public void LoadPhoto(string filePath)
 		{
 			FileInfo photoInfo = new(filePath);
-
-			this._photoRepository.AddPhoto(new()
+			var p = new Photo()
 			{
 				Id = this._photoRepository.GetCurrentId(),
 				DateTaken = photoInfo.CreationTime,
@@ -41,7 +40,11 @@ namespace PCSU.Controllers
 				Path = photoInfo.FullName,
 				DateModified = photoInfo.LastWriteTime,
 				Extension = photoInfo.Extension
-			})
+			};
+			if (_photoRepository.IsDuplicate(p, out string duplicateWith)) {
+				throw new Exception($"Duplicate with {duplicateWith}");
+			}
+			this._photoRepository.AddPhoto(p);
 			;
 		}
 
@@ -58,6 +61,11 @@ namespace PCSU.Controllers
 				r.Add(this._photoRepository.GetPhoto(i));
 			}
 			return r;
+		}
+
+		public void CompressPhoto(int photoId, CompressOptions co)
+		{
+
 		}
 	}
 }

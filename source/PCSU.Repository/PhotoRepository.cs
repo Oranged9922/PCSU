@@ -2,6 +2,7 @@
 namespace PCSU.Repositories
 {
 	using PCSU.Models;
+	using System;
 
 	public class PhotoRepository
 	{
@@ -32,6 +33,30 @@ namespace PCSU.Repositories
 		public int GetCurrentId()
 		{
 			return this._id;
+		}
+
+		public bool IsDuplicate(Photo p, out string duplicateWith)
+		{
+			duplicateWith = String.Empty;
+			Photo? inRepo = 
+			_photos.Values.Where
+			(x => x.DateTaken == p.DateTaken).FirstOrDefault();
+			if (inRepo is null)
+			{
+				return false;
+			}
+			else
+			{
+				var fSizeNew = new System.IO.FileInfo(p.Path).Length;
+				var fExisting = new System.IO.FileInfo(inRepo.Path).Length;
+				if (fSizeNew == fExisting)
+				{
+					duplicateWith = inRepo.Path;
+					return true;
+				}
+				return false;
+			}
+
 		}
 	}
 }
