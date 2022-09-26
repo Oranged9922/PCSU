@@ -128,7 +128,7 @@ namespace PCSU.MainApplication
 
 		private void CheckBoxCompressWith_Checked(object sender, RoutedEventArgs e)
 		{
-			ComboBoxCompressOptions.IsEnabled = false;
+			ComboBoxCompressOptions.IsEnabled = true;
 
 		}
 		private void CheckBoxCompressWith_Unchecked(object sender, RoutedEventArgs e)
