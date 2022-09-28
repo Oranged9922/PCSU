@@ -7,18 +7,16 @@
 	{
 		public static void Compress(string imagePath, string outputFolder, int quality, string postfix = "")
 		{
-			string name = imagePath.Substring(imagePath.LastIndexOf('\\') + 1);
+			string name = imagePath[(imagePath.LastIndexOf('\\') + 1)..];
 			name = name.Replace(".jpg", postfix + ".jpg");
 			// Load the JPEG image using Image class
-			using (Image image = Image.FromFile(imagePath))
+			using var image = Image.FromFile(imagePath);
+			ImageCodecInfo? jpegCodec = ImageCodecInfo.GetImageEncoders().First(enc => enc.FormatID == ImageFormat.Jpeg.Guid);
+			var jpegParams = new EncoderParameters(1)
 			{
-				var jpegCodec = ImageCodecInfo.GetImageEncoders().First(enc => enc.FormatID == ImageFormat.Jpeg.Guid);
-				var jpegParams = new EncoderParameters(1)
-				{
-					Param = new[] { new EncoderParameter(Encoder.Quality, quality) }
-				};
-				image.Save(outputFolder + "\\" + name, jpegCodec, jpegParams);
-			}
+				Param = new[] { new EncoderParameter(Encoder.Quality, quality) }
+			};
+			image.Save(outputFolder + "\\" + name, jpegCodec, jpegParams);
 		}
 	}
 }
