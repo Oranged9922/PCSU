@@ -5,7 +5,6 @@ namespace PCSU.MainApplication
 	using System.Windows;
 	using System.Windows.Controls;
 	using System.Windows.Media.Imaging;
-	using System.Drawing.Imaging;
 	using PCSU.Controllers;
 	using PCSU.Models;
 
@@ -15,6 +14,9 @@ namespace PCSU.MainApplication
 	public partial class MainWindow : Window
 	{
 		private readonly PhotoController _photoController = new();
+		private readonly SorterController _sorterController = new();
+		private readonly CompressionController _compressionController = new();
+
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -23,15 +25,7 @@ namespace PCSU.MainApplication
 #pragma warning disable CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
 			Closing += MainWindow_Closing;
 #pragma warning restore CS8622 // Nullability of reference types in type of parameter doesn't match the target delegate (possibly because of nullability attributes).
-
-			ComboBoxCompressOptions.Items.Add("100% (Minimum compression)");
-			ComboBoxCompressOptions.Items.Add("75%");
-			ComboBoxCompressOptions.Items.Add("50");
-			ComboBoxCompressOptions.Items.Add("25");
-			ComboBoxCompressOptions.Items.Add("1% (Maximum compression)");
-
-			ComboBoxSortOptions.Items.Add("By creation date");		
-			}
+		}
 
 		private void ButtonPhotosLoad_Click(object sender, RoutedEventArgs e)
 		{
@@ -58,7 +52,7 @@ namespace PCSU.MainApplication
 					MessageBoxButton button = MessageBoxButton.OK;
 					MessageBoxImage icon = MessageBoxImage.Warning;
 
-					MessageBoxResult result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.OK);
+					_ = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.OK);
 
 				}
 			}
@@ -104,66 +98,71 @@ namespace PCSU.MainApplication
 			this.UpdateListBoxFile();
 		}
 
-		private void Button_Click(object sender, RoutedEventArgs e)
-		{
-				Application.Current.Shutdown();
-		}
-
 		private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			e.Cancel = (MessageBox.Show("Are you sure you want to exit?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes) ?
-				 false : true;
+			e.Cancel = MessageBox.Show("Are you sure you want to exit?", "", MessageBoxButton.YesNo) != MessageBoxResult.Yes;
 		}
 
-		private void CheckBoxSortBy_Unchecked(object sender, RoutedEventArgs e)
-		{
-			ComboBoxSortOptions.IsEnabled = false;
-		}
+		//private void CheckBoxSortBy_Unchecked(object sender, RoutedEventArgs e)
+		//{
+		//	ComboBoxSortOptions.IsEnabled = false;
+		//}
 
-		private void CheckBoxSortBy_Checked(object sender, RoutedEventArgs e)
-		{
-			ComboBoxSortOptions.IsEnabled = true;
+		//private void CheckBoxSortBy_Checked(object sender, RoutedEventArgs e)
+		//{
+		//	ComboBoxSortOptions.IsEnabled = true;
 
-		}
+		//}
 
-		private void CheckBoxCompressWith_Checked(object sender, RoutedEventArgs e)
-		{
-			ComboBoxCompressOptions.IsEnabled = true;
+		//private void CheckBoxCompressWith_Checked(object sender, RoutedEventArgs e)
+		//{
+		//	ComboBoxCompressOptions.IsEnabled = true;
 
-		}
-		private void CheckBoxCompressWith_Unchecked(object sender, RoutedEventArgs e)
-		{
-			ComboBoxCompressOptions.IsEnabled = false;
-		}
+		//}
+		//private void CheckBoxCompressWith_Unchecked(object sender, RoutedEventArgs e)
+		//{
+		//	ComboBoxCompressOptions.IsEnabled = false;
+		//}
 
-		private void ButtonChoosePath_Click(object sender, RoutedEventArgs e)
-		{
-			var dialog = new Microsoft.Win32.SaveFileDialog
-			{
-				Title = "Select a Directory",
-				Filter = "Directory|*.this.directory",
-				FileName = "select"
-			};
+		//private void ButtonChoosePath_Click(object sender, RoutedEventArgs e)
+		//{
+		//	var dialog = new Microsoft.Win32.SaveFileDialog
+		//	{
+		//		Title = "Select a Directory",
+		//		Filter = "Directory|*.this.directory",
+		//		FileName = "select"
+		//	};
 
-			if (dialog.ShowDialog() == true)
-			{
-				string path = dialog.FileName;
+		//	if (dialog.ShowDialog() == true)
+		//	{
+		//		string path = dialog.FileName;
 
-				path = path.Replace("\\select.this.directory", "");
-				path = path.Replace(".this.directory", "");
+		//		path = path.Replace("\\select.this.directory", "");
+		//		path = path.Replace(".this.directory", "");
 
-				if (!System.IO.Directory.Exists(path))
-				{
-					System.IO.Directory.CreateDirectory(path);
-				}
-				// Our final value is in path
-				DestinationPath.Text = path;
-			}
-		}
+		//		if (!System.IO.Directory.Exists(path))
+		//		{
+		//			System.IO.Directory.CreateDirectory(path);
+		//		}
+		//		// Our final value is in path
+		//		DestinationPath.Text = path;
+		//	}
+		//}
 
 		private void ButtonRun_Click(object sender, RoutedEventArgs e)
 		{
 
+		}
+
+		private void ButtonOptions_Click(object sender, RoutedEventArgs e)
+		{
+			OptionsWindow optionsWindow = new(_sorterController, _compressionController);
+			optionsWindow.ShowDialog();
+		}
+
+		private void ButtonExit_Click(object sender, RoutedEventArgs e)
+		{
+			Application.Current.Shutdown();
 		}
 	}
 }
