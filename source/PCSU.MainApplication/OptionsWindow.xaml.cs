@@ -25,24 +25,12 @@
 
 			// if ListBox has selected same place, disable button 
 			this.ButtonSelectFolder.IsEnabled = _sorterController.IsSaveInSameLocationSelected(this.ListBoxDestinationOptions.SelectedItem?.ToString()) ? false : true;
-			if (this.ButtonSelectFolder.IsEnabled)
-			{
-				this.TextBlockSelectedFolder.Text = _sorterController.GetSelectedFolder();
-			}
-			else
-			{
-				this.TextBlockSelectedFolder.Text = string.Empty;
-			}
+			this.TextBlockSelectedFolder.Text = this.ButtonSelectFolder.IsEnabled ? _sorterController.GetSelectedFolder() : string.Empty;
 		}
 
 		private void ButtonDefault_Click(object sender, RoutedEventArgs e)
 		{
-			UpdateWindow();
-		}
-
-		private void UpdateWindow()
-		{
-			;
+			
 		}
 
 		private void ListBoxDestinationOptions_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
