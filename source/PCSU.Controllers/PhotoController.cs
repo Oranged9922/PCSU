@@ -62,10 +62,5 @@ namespace PCSU.Controllers
 			}
 			return r;
 		}
-
-		public void CompressPhoto(int photoId, CompressOptions co)
-		{
-
-		}
 	}
 }
