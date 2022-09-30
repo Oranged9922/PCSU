@@ -25,32 +25,47 @@
 			</Grid.RowDefinitions>
 			<!--Destination-->
 			<Border Grid.Row="0" BorderBrush="Silver" BorderThickness="2" Margin="0,0,0,10">
-				<Grid Width="650" HorizontalAlignment="Left" Height="Auto">
-					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-					</Grid.RowDefinitions>
-					<Grid Grid.Row="0">
-						<Label>Destination</Label>
-					</Grid>
-					<Grid Grid.Row="1">
-						<StackPanel Orientation="Horizontal">
-							<Label Content="Destination:" Margin="10"/>
-							<ComboBox Width="200" Height="25" Name="ListBoxDestinationOptions" SelectionChanged="ListBoxDestinationOptions_SelectionChanged">
-							</ComboBox>
-						</StackPanel>
-					</Grid>
-					<Grid Grid.Row="2">
-						<StackPanel Orientation="Horizontal">
-							<Button
+				<StackPanel Orientation="Horizontal">
+					<Grid Width ="Auto" HorizontalAlignment="Left" Height="Auto">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+						<Grid Grid.Row="0">
+							<Label>Destination</Label>
+						</Grid>
+						<Grid Grid.Row="1">
+							<StackPanel Orientation="Horizontal">
+								<Label Content="Destination:" Margin="10"/>
+								<ComboBox Width="200" Height="25" Name="ListBoxDestinationOptions" SelectionChanged="ListBoxDestinationOptions_SelectionChanged">
+								</ComboBox>
+							</StackPanel>
+						</Grid>
+						<Grid Grid.Row="2">
+							<StackPanel Orientation="Horizontal">
+								<Button
 							Name ="ButtonSelectFolder"
-						Width="100" Margin="10,5,5,5">
-								Select Folder...</Button>
-							<TextBlock Name="TextBlockSelectedFolder" Margin="20,0,0,0" VerticalAlignment="Center">AAAAAAAaaaaaaaaaaaaa</TextBlock>
-						</StackPanel>
+							Width="100" Margin="10,5,5,5" Click="ButtonSelectFolder_Click">
+									Select Folder...</Button>
+								<TextBlock Name="TextBlockSelectedFolder" Margin="20,0,0,0" VerticalAlignment="Center">AAAAAAAaaaaaaaaaaaaa</TextBlock>
+							</StackPanel>
+						</Grid>
 					</Grid>
-				</Grid>
+					<Grid Width="Auto" Height="Auto" Margin="10,0,0,0">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+						<!--radio buttons-->
+						<Label Grid.Row="0">Save to subfolders</Label>
+						<RadioButton Grid.Row="1" Name="RadioButtonNoSubfolders" GroupName="SaveTo" IsChecked="True" Margin="0,0,0,10" Click="RadioButtonNoSubfolders_Click">No subfolder hierarchy</RadioButton>
+						<RadioButton Grid.Row="2" Name="RadioButtonSubfolders" GroupName="SaveTo" Margin="0,0,0,5" Click="RadioButtonSubfolders_Click">Use subfolder hierarchy sorting</RadioButton>
+						<ComboBox Grid.Row="3" Width="200" Height="25" Name="ListBoxSortOptions" AllowDrop="False" IsEnabled="False" SelectionChanged="ListBoxSortOptions_SelectionChanged"/>
+					</Grid>
+				</StackPanel>
 			</Border>
 			<!--File Naming-->
 			<Border Grid.Row="1" BorderBrush="Silver" BorderThickness="2" Margin="0,0,0,10">
@@ -69,28 +84,28 @@
 					<Grid Grid.Row="1">
 						<StackPanel Orientation="Horizontal">
 							<Label Content="Example:" Margin="20,0,10,0"/>
-							<TextBlock Name="TextBlockExample" VerticalAlignment="Center">iughkjhgkuzg</TextBlock>
+							<TextBlock Name="TextBlockExample" VerticalAlignment="Center"></TextBlock>
 						</StackPanel>
 					</Grid>
 					<Grid Grid.Row="2">
 						<StackPanel Orientation="Horizontal" Margin="20,10,0,10">
-						<ComboBox Name="ComboBoxFileNaming1" Width="250"></ComboBox>
+						<ComboBox Name="ComboBoxFileNaming1" Width="250" SelectionChanged="ComboBoxFileNaming1_SelectionChanged"></ComboBox>
 							<TextBlock Margin="10,0,10,0">+</TextBlock>
-						<ComboBox Name="ComboBoxFileNaming2" Width="250"></ComboBox>
+						<ComboBox Name="ComboBoxFileNaming2" Width="250" SelectionChanged="ComboBoxFileNaming2_SelectionChanged"></ComboBox>
 							<TextBlock Margin="10,0,10,0">+</TextBlock>
 						</StackPanel>
 					</Grid>
 					<Grid Grid.Row="3">
 						<StackPanel Orientation="Horizontal" Margin="20,0,0,10">
-							<ComboBox Name="ComboBoxFileNaming3" Width="250"></ComboBox>
+							<ComboBox Name="ComboBoxFileNaming3" Width="250" SelectionChanged="ComboBoxFileNaming3_SelectionChanged"></ComboBox>
 							<TextBlock Margin="10,0,10,0">+</TextBlock>
-							<ComboBox Name="ComboBoxFileNaming4" Width="250"></ComboBox>
+							<ComboBox Name="ComboBoxFileNaming4" Width="250" SelectionChanged="ComboBoxFileNaming4_SelectionChanged"></ComboBox>
 						</StackPanel>
 					</Grid>
 					<Grid Grid.Row="4">
 						<StackPanel Orientation="Horizontal" Margin="20,0,0,10">
 							<Label>Begin Numbering</Label>
-							<RichTextBox Width="100" Height="20"></RichTextBox>
+							<TextBox Name="TextBoxBeginNumbering" Width="100" Height="20" AllowDrop="False" TextChanged="TextBoxBeginNumbering_TextChanged"/>
 						</StackPanel>
 					</Grid>
 					<Grid Grid.Row="5">
@@ -128,7 +143,7 @@
 					<Grid Grid.Row="3">
 						<StackPanel Orientation="Horizontal">
 							<Label Margin="10,0,10,0">Quality:</Label>
-							<RichTextBox Height="20" Width="25"></RichTextBox>
+							<TextBox Height="20" Width="25" AllowDrop="False"></TextBox>
 							<Label>1 - Lowest | 100 - Maximum</Label>
 						</StackPanel>
 					</Grid>

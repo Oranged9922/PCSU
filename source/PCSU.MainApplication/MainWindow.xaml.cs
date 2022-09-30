@@ -15,7 +15,6 @@ namespace PCSU.MainApplication
 	{
 		private readonly PhotoController _photoController = new();
 		private readonly SorterController _sorterController = new();
-		private readonly CompressionController _compressionController = new();
 
 		public MainWindow()
 		{
@@ -156,7 +155,7 @@ namespace PCSU.MainApplication
 
 		private void ButtonOptions_Click(object sender, RoutedEventArgs e)
 		{
-			OptionsWindow optionsWindow = new(_sorterController, _compressionController);
+			OptionsWindow optionsWindow = new(_sorterController);
 			optionsWindow.ShowDialog();
 		}
 
