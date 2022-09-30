@@ -1,12 +1,11 @@
-﻿<Window x:Class="PCSU.MainApplication.OptionsWindow"
+﻿<Window x:Class="PCSU.UI.Windowing.OptionsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PCSU.MainApplication"
         mc:Ignorable="d"
         Title="Save Options" Height="600" Width="700" ResizeMode="NoResize">
-		
+
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="auto"></RowDefinition>
@@ -74,9 +73,9 @@
 					</Grid>
 					<Grid Grid.Row="2">
 						<StackPanel Orientation="Horizontal" Margin="20,10,0,10">
-						<ComboBox Name="ComboBoxFileNaming1" Width="250"></ComboBox>
+							<ComboBox Name="ComboBoxFileNaming1" Width="250"></ComboBox>
 							<TextBlock Margin="10,0,10,0">+</TextBlock>
-						<ComboBox Name="ComboBoxFileNaming2" Width="250"></ComboBox>
+							<ComboBox Name="ComboBoxFileNaming2" Width="250"></ComboBox>
 							<TextBlock Margin="10,0,10,0">+</TextBlock>
 						</StackPanel>
 					</Grid>
@@ -95,7 +94,7 @@
 					</Grid>
 					<Grid Grid.Row="5">
 						<StackPanel Orientation="Horizontal" Margin="20,0,0,10">
-						<Label>File Extension</Label>
+							<Label>File Extension</Label>
 							<ComboBox Name="ComboBoxFileExtension" Width="100" Height="20" Margin="22,0,0,0"></ComboBox>
 						</StackPanel>
 					</Grid>
@@ -115,7 +114,7 @@
 					</Grid>
 					<Grid Grid.Row="1">
 						<StackPanel Orientation="Horizontal" Margin="10,0,0,0">
-						<Label>Metadata</Label>
+							<Label>Metadata</Label>
 							<ComboBox Width="500" Height="20"></ComboBox>
 						</StackPanel>
 					</Grid>
@@ -135,7 +134,7 @@
 				</Grid>
 			</Border>
 		</Grid>
-		
+
 		<!--Bottom Part-->
 		<Grid
 		Grid.Row="1"
@@ -150,5 +149,5 @@
 				</Button>
 			</StackPanel>
 		</Grid>
-    </Grid>
+	</Grid>
 </Window>

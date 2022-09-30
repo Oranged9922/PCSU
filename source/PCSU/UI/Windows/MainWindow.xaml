@@ -1,9 +1,8 @@
-﻿<Window x:Class="PCSU.MainApplication.MainWindow"
+﻿<Window x:Class="PCSU.UI.Windowing.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PCSU.MainApplication"
         mc:Ignorable="d"
         Title="PCSU" 
         Height="450" 
@@ -82,7 +81,7 @@
                     Name="PhotoImageBox"
 					Margin="10"
 					/>
-					</Border>
+				</Border>
 				<Border Grid.Row="1" BorderBrush="Black" BorderThickness="2">
 					<StackPanel 
 					Name="StackPanelFileInformation"
@@ -109,7 +108,7 @@
 				</Button>
 			</Grid>
 			<Grid Grid.Column="1">
-					<StackPanel>
+				<StackPanel>
 					<Button 
 				Name="ButtonRun"
 				Height="30" 
@@ -117,16 +116,16 @@
 				HorizontalAlignment="Right"
 				Margin="0,10,0,20" Click="ButtonRun_Click">
 						Run
-						</Button>
-							
-						<Button
+					</Button>
+
+					<Button
 				Name="ButtonExit"
 				Height="30" 
 				Width="200" 
 				HorizontalAlignment="Right" Click="ButtonExit_Click">
 						Exit
-						</Button>
-					</StackPanel>
+					</Button>
+				</StackPanel>
 			</Grid>
 		</Grid>
 	</Grid>

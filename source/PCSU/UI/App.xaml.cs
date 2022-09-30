@@ -1,5 +1,4 @@
-﻿
-namespace PCSU.MainApplication
+﻿namespace PCSU.UI.Windowing
 {
 	using System.Windows;
 
@@ -8,5 +7,6 @@ namespace PCSU.MainApplication
 	/// </summary>
 	public partial class App : Application
 	{
+
 	}
 }

@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS0006: Metadata file 'H:\GitHub\PCSU\PCSU\source\PCSU\UI\obj\Debug\net6.0-windows\ref\UI.dll' could not be found
+dotnet_diagnostic.CS0006.severity = silent
